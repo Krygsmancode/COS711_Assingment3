@@ -1,0 +1,9 @@
+Malaria-Categorization/
+├── data/                  # Directory for storing datasets
+│   ├── raw/               # Original data from Zindi
+│   └── processed/         # Preprocessed data
+├── notebooks/             # Jupyter notebooks for exploration
+├── src/                   # Python scripts
+├── results/               # Store models, metrics, evaluation results, etc.
+└── README.md
+
