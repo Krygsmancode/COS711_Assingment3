@@ -1,3 +1,5 @@
+
+File Structure :
 Malaria-Categorization/
 ├── data/                  # Directory for storing datasets
 │   ├── raw/               # Original data from Zindi
@@ -7,3 +9,4 @@ Malaria-Categorization/
 ├── results/               # Store models, metrics, evaluation results, etc.
 └── README.md
 
+@Wain, You can remove the REAMME files in all the folders was used as placeholder files
