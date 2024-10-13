@@ -1,12 +1,27 @@
 
 File Structure :
 Malaria-Categorization/
-├── data/                  # Directory for storing datasets
-│   ├── raw/               # Original data from Zindi
-│   └── processed/         # Preprocessed data
-├── notebooks/             # Jupyter notebooks for exploration
-├── src/                   # Python scripts
-├── results/               # Store models, metrics, evaluation results, etc.
-└── README.md
+├── data/                    
+│   ├── raw/                 # Original data from Zindi
+│   │   └── .gitkeep         # Placeholder to ensure the folder is tracked
+│   └── processed/           # Preprocessed and augmented data
+│       └── .gitkeep         # Placeholder to ensure the folder is tracked
+├── notebooks/               # Jupyter notebooks for exploration and experimentation
+│   ├── data_preparation.ipynb       # Notebook for data cleaning and preparation
+│   ├── data_augmentation.ipynb      # Notebook for data augmentation
+│   ├── baseline_model.ipynb         # Notebook for training the baseline model
+│   ├── advanced_model.ipynb         # Notebook for developing the advanced model
+│   └── malaria_yolo_template.ipynb  # The YOLO training template notebook from Zindi
+├── src/                     
+│   ├── data_preparation.py         # Script for data preparation tasks
+│   ├── augmentation.py             # Script for data augmentation
+│   └── models/                 
+│       ├── baseline_model.py       # Script for defining the baseline CNN model
+│       ├── advanced_model.py       # Script for defining the advanced model
+│       └── .gitkeep                # Placeholder to ensure models folder is tracked
+├── results/                 # Store models, metrics, evaluation results, etc.
+│   └── .gitkeep             # Placeholder to ensure the folder is tracked
+├── README.md                # Project description and setup instructions
+└── .gitignore               # Git ignore rules for unwanted files
 
 @Wain, You can remove the REAMME files in all the folders was used as placeholder files
