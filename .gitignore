@@ -1,0 +1,19 @@
+# Virtual Environment
+.venv/
+__pycache__/
+*.py[cod]
+
+# Data
+data/raw/*
+data/processed/*
+
+# System Files
+.DS_Store
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Model Checkpoints
+*.h5
+*.ckpt
+
