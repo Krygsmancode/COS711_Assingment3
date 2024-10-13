@@ -1,19 +1,21 @@
+# Python bytecode
+*.pyc
+__pycache__/
+
 # Virtual Environment
 .venv/
-__pycache__/
-*.py[cod]
 
-# Data
+# Data Files - Prevent large datasets from being pushed
 data/raw/*
 data/processed/*
-
-# System Files
-.DS_Store
 
 # Jupyter Notebook Checkpoints
 .ipynb_checkpoints/
 
-# Model Checkpoints
+# System Files
+.DS_Store
+
+# Model Checkpoints and Large Files
 *.h5
 *.ckpt
 
