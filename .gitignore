@@ -4,6 +4,7 @@ __pycache__/
 
 # Virtual Environment
 .venv/
+venv/
 
 # Data Files - Prevent large datasets from being pushed
 data/raw/*
@@ -18,4 +19,7 @@ data/processed/*
 # Model Checkpoints and Large Files
 *.h5
 *.ckpt
+
+# testing folder
+testing/
 
