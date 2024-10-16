@@ -7,3 +7,5 @@ scikit-learn==1.5.1
 tqdm==4.66.5
 matplotlib==3.9.0
 graphviz==0.20.3
+opencv-python==4.10.0.84
+pydot==3.0.2
