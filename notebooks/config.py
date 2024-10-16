@@ -1,0 +1,2 @@
+GLOBAL_CONFIG_DATA_PATH = "data/"
+GLOBAL_CONFIG_DATA_RAW_IMAGE_PATH = "data/raw_image/"
