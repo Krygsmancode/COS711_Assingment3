@@ -1,2 +1,6 @@
-GLOBAL_CONFIG_DATA_PATH = "data/"
-GLOBAL_CONFIG_DATA_RAW_IMAGE_PATH = "data/raw_image/"
+GLOBAL_CONFIG_DATA_PATH = "../../../Dataset/"
+GLOBAL_CONFIG_DATA_RAW_IMAGE_PATH = "../../../Dataset/images/"
+GLOBAL_CONFIG_DATA_RAW_LABEL_PATH = "../../../Dataset/Train.csv"
+GLOBAL_CONFIG_DATA_RAW_COMPTEST_PATH = "../../../Dataset/Test.csv"
+GLOBAL_CONFIG_RESULT_PATH = "../results/"
+GLOBAL_CONFIG_DATA_PROCESSED_IMAGE_PATH = "../../../Dataset/processed_images/"
