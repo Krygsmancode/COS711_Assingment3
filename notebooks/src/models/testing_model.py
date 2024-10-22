@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow.keras import layers, models
 
 class model_builder(): # base abstract class
-    def create_model():
+    def create_model(output_shape = 1):
         pass
 
     def visualize_model(model):
@@ -10,7 +10,8 @@ class model_builder(): # base abstract class
 
 class model_builder_v0(model_builder):
     __doc__ = "This is the first version of the model builder"
-    def create_model(input_shape = (30, 30, 1), output_shape = 1):
+    def create_model(output_shape = 1):
+        input_shape = (30, 30, 1)
         # Define the input shape
         inputs = layers.Input(shape=input_shape)
 
@@ -47,7 +48,7 @@ class model_builder_v0(model_builder):
         model = models.Model(inputs=inputs, outputs=output)
 
         # Compile the model
-        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+        model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
         return model
 
