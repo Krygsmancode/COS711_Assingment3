@@ -10,3 +10,4 @@ graphviz==0.20.3
 opencv-python==4.10.0.84
 pydot==3.0.2
 seaborn==0.13.2
+albumentations==1.4.15
