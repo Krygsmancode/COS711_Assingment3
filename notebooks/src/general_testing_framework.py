@@ -40,6 +40,7 @@ class ModelTrainingFrameworkBasic:
     def prepare_dataset(self, output_boundig_size=1):
         # duplicate the data to match the output size shape=(num_data, 4+num_classes_one_hot) --> shape=(num_data, output_boundig_size, 4+num_classes_one_hot)
         new_Y_data = np.zeros((self.y_data.shape[0], output_boundig_size, self.y_data.shape[1]))
+
         for i in range(self.y_data.shape[0]):
             new_Y_data[i] = np.tile(self.y_data[i], (output_boundig_size, 1))
         return new_Y_data
@@ -54,9 +55,23 @@ class ModelTrainingFrameworkBasic:
         output_boundig_size = self.model.output_shape[1]
         new_y_data = self.prepare_dataset(output_boundig_size)
 
+        # print("X shape:", self.X_data.shape)
+        # print("y shape:", self.y_data.shape)
+        # print("new_y_data shape:", new_y_data.shape)
+
+        if loss == 'sparse_categorical_crossentropy':
+            new_y_data = self.y_data
+
+            print("new_y_data shape:", new_y_data.shape)
+            # print element 0 of new_y_data
+            print(new_y_data[0])
+
         self.history = self.model.fit(self.X_data, new_y_data, batch_size=self.batch_size, epochs=self.epochs, validation_split=self.test_size, callbacks=callbacks)
         
         return self.history
+    
+    def save_model(self, path):
+        self.model.save(path)
     
 class ModelTrainingFramework:
     """
@@ -129,60 +144,6 @@ class ModelTrainingFramework:
         loss, accuracy = self.model.evaluate(val_dataset)
         print(f"Validation Loss: {loss}")
         print(f"Validation Accuracy: {accuracy}")
-
-class DataLoader:
-    """
-    A class to load data from a file and preprocess it.
-
-    Attributes
-
-    file_path: str
-        The path to the file containing the csv data. (Image_ID,class,confidence,ymin,xmin,ymax,xmax,augmented)
-
-    image_dir: str
-        The directory containing the images.
-    """
-    def __init__(self, file_path, image_dir):
-        self.file_path = file_path
-        self.image_dir = image_dir
-        
-    def load_data(self):
-        data = pd.read_csv(self.file_path)
-
-        # remove the 'augmented' column
-        data = data.drop('augmented', axis=1)
-
-        # remove rows with NaN values
-        data = data.dropna()
-
-        # split x (load the images from id) and y (the class and bounding box)
-        X_names = data['Image_ID']
-
-        # load the images
-        X = []
-        for name in X_names:
-            image = plt.imread(f"{self.image_dir}/{name}")
-            X.append(image)
-
-        X = np.array(X)
-
-        # y data format: (ymin,xmin,ymax,xmax,class1,class2,class3,...)
-
-        # remove the 'Image_ID' column and the 'confidence' column
-        y = data.drop(['Image_ID', 'confidence'], axis=1)
-
-        # one hot encode the class
-        num_classes = len(np.unique(y['class']))
-        y_class = tf.one_hot(y['class'], num_classes)
-
-        # concatenate the class one hot encoding with the bounding box
-        y = pd.concat([y.drop('class', axis=1), y_class], axis=1)
-
-        return X, y
-    
-    def checkShapes(self, X, y):
-        print(f"X shape: (Number of images, Image Height, Image Width, Image Channels): {X.shape}")
-        print(f"y shape: (Number of images, 4 + Number of Classes): {y.shape}")
 
         
 
