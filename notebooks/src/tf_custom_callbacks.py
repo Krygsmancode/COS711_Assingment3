@@ -44,6 +44,39 @@ class tf_early_stopping(Callback):
             self.model.set_weights(self.best_weights)
             print("Restoring model weights from the end of the best epoch.")
 
+class tf_early_stopping_2(Callback):
+    def __init__(self, patience=10, min_delta=0.01):
+        super(tf_early_stopping_2, self).__init__()
+        self.patience = patience
+        self.min_delta = min_delta
+        self.wait = 0
+        self.best_weights = None
+        self.best_fscore = 0
+        self.best_accuracy = 0
+
+    def on_epoch_end(self, epoch, logs=None):
+        current_accuracy = logs.get('val_accuracy')
+
+        if current_accuracy is None:
+            return
+        
+        if current_accuracy >= self.best_accuracy:
+                self.best_accuracy = current_accuracy
+                self.best_weights = self.model.get_weights()
+
+        if abs(current_accuracy - self.best_accuracy) < self.min_delta:
+            self.wait += 1
+            if self.wait >= self.patience:
+                print(f"Epoch {epoch}: Early stopping")
+                self.model.stop_training = True
+        else:
+            self.wait = 0
+
+    def on_train_end(self, logs=None):
+        if self.best_weights is not None:
+            self.model.set_weights(self.best_weights)
+            print("Restoring model weights from the end of the best epoch.")
+
 class TQDMProgressBar(Callback):
     def set_custom_name(self, name):
         self.bar_name = name
