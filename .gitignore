@@ -6,6 +6,9 @@ __pycache__/
 .venv/
 venv/
 
+notebooks/config.py
+
+
 # Data Files - Prevent large datasets from being pushed
 data/raw/*
 data/processed/*
