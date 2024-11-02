@@ -57,7 +57,7 @@ def basic_identity_block(x, filters, kernel_size=(3, 3), name="identity_block"):
     return basic_residual_block2(x, filters, kernel_size=kernel_size, stride=1, short_conv_kernel=(1, 1), short_conv_stride=1, name=name)
 
 
-def small_resnet_ssd(input_shape=(128, 128, 3), num_classes=10, num_boxes=50):
+def small_resnet_ssd(input_shape=(128, 128, 3), num_classes=10, num_boxes=50, pool_size=10):
     inputs = layers.Input(shape=input_shape)
     
     # Initial Conv Layer
@@ -95,7 +95,7 @@ def small_resnet_ssd(input_shape=(128, 128, 3), num_classes=10, num_boxes=50):
     # pool_size = num_out_boxes // num_boxes
 
     # shrink the output to the number of boxes (max pool)
-    outputs = layers.MaxPool1D(pool_size=10, name="ssd_output_shrink")(loc_conf)
+    outputs = layers.MaxPool1D(pool_size=pool_size, name="ssd_output_shrink")(loc_conf)
     # Resize the output to the exact number of boxes
     # final_output_size = num_boxes * (4 + num_classes)
     # outputs = layers.Reshape((num_boxes, 4 + num_classes), name="ssd_final_output")(loc_conf[:, :final_output_size])
